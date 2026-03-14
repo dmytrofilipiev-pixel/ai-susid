@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Сусід — Розумний помічник для вашого бізнесу</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Geologica:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ec;
+    --green: #00e87a;
+    --green-dark: #00b85e;
+    --grey: #1a1a1a;
+    --grey2: #2a2a2a;
+    --muted: #888;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Geologica', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,232,122,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,232,122,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-block;
+    border: 1px solid rgba(0,232,122,0.4);
+    color: var(--green);
+    font-family: 'Geologica', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border-radius: 100px;
+    margin-bottom: 40px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(42px, 8vw, 100px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 30px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  h1 span { color: var(--green); }
+
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 20px);
+    color: #aaa;
+    max-width: 540px;
+    line-height: 1.7;
+    margin-bottom: 50px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .btn-main {
+    background: var(--green);
+    color: var(--black);
+    font-family: 'Unbounded', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 18px 36px;
+    border-radius: 100px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+  }
+
+  .btn-main:hover {
+    background: var(--green-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0,232,122,0.25);
+  }
+
+  .btn-ghost {
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--white);
+    font-family: 'Geologica', sans-serif;
+    font-size: 14px;
+    padding: 18px 36px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--green); color: var(--green); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px; left: 40px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .scroll-line {
+    width: 40px; height: 1px;
+    background: var(--muted);
+    animation: lineGrow 1.5s ease infinite;
+  }
+
+  /* TICKER */
+  .ticker {
+    background: var(--green);
+    padding: 14px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .ticker-inner {
+    display: inline-flex;
+    animation: ticker 20s linear infinite;
+    gap: 60px;
+  }
+
+  .ticker span {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--black);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* SECTION */
+  section { padding: 100px 40px; }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(28px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 60px;
+  }
+
+  /* PAIN SECTION */
+  .pain { background: var(--grey); }
+
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+  }
+
+  .pain-item {
+    background: var(--black);
+    padding: 40px;
+    transition: background 0.3s;
+  }
+
+  .pain-item:hover { background: #111; }
+
+  .pain-num {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: rgba(0,232,122,0.15);
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+
+  .pain-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+
+  .pain-text { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+  /* HOW IT WORKS */
+  .steps { background: var(--black); }
+
+  .steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 800px;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 30px;
+    padding: 40px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: all 0.3s;
+  }
+
+  .step:hover .step-num { color: var(--green); }
+
+  .step-num {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.08);
+    line-height: 1;
+    transition: color 0.3s;
+  }
+
+  .step-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--white);
+  }
+
+  .step-text { font-size: 15px; color: var(--muted); line-height: 1.7; }
+
+  /* PRICING */
+  .pricing { background: var(--grey); }
+
+  .plans {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+    max-width: 900px;
+  }
+
+  .plan {
+    background: var(--black);
+    padding: 50px 40px;
+    position: relative;
+    transition: transform 0.3s;
+  }
+
+  .plan:hover { transform: translateY(-4px); }
+
+  .plan.featured {
+    background: var(--green);
+    color: var(--black);
+  }
+
+  .plan-badge {
+    position: absolute;
+    top: -1px; right: 30px;
+    background: var(--black);
+    color: var(--green);
+    font-family: 'Unbounded', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 6px 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .plan-name {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    opacity: 0.6;
+  }
+
+  .plan.featured .plan-name { color: var(--black); }
+
+  .plan-price {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 56px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .plan-period { font-size: 13px; color: var(--muted); margin-bottom: 36px; }
+  .plan.featured .plan-period { color: rgba(0,0,0,0.5); }
+
+  .plan-features { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px; }
+
+  .plan-features li {
+    font-size: 14px;
+    color: #aaa;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .plan.featured .plan-features li { color: rgba(0,0,0,0.7); }
+
+  .plan-features li::before {
+    content: '→';
+    color: var(--green);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .plan.featured .plan-features li::before { color: var(--black); }
+
+  .plan-btn {
+    display: block;
+    text-align: center;
+    padding: 16px;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--white);
+    text-decoration: none;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+  }
+
+  .plan-btn:hover { border-color: var(--green); color: var(--green); }
+
+  .plan.featured .plan-btn {
+    background: var(--black);
+    color: var(--green);
+    border-color: var(--black);
+  }
+
+  .plan.featured .plan-btn:hover { background: var(--grey); }
+
+  /* PROOF */
+  .proof { background: var(--black); }
+
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2px;
+    margin-bottom: 80px;
+  }
+
+  .proof-stat {
+    background: var(--grey);
+    padding: 40px;
+    text-align: center;
+  }
+
+  .proof-number {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .proof-label { font-size: 13px; color: var(--muted); }
+
+  /* FAQ */
+  .faq { background: var(--grey); }
+
+  .faq-list { max-width: 700px; display: flex; flex-direction: column; gap: 2px; }
+
+  .faq-item {
+    background: var(--black);
+    padding: 30px 40px;
+    cursor: pointer;
+  }
+
+  .faq-q {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .faq-q::after {
+    content: '+';
+    color: var(--green);
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .faq-a {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, margin 0.3s;
+  }
+
+  .faq-item.open .faq-a { max-height: 200px; margin-top: 16px; }
+  .faq-item.open .faq-q::after { content: '−'; }
+
+  /* CTA FINAL */
+  .cta-final {
+    background: var(--green);
+    padding: 100px 40px;
+    text-align: center;
+  }
+
+  .cta-final h2 { color: var(--black); margin-bottom: 20px; }
+
+  .cta-final p { color: rgba(0,0,0,0.6); font-size: 18px; margin-bottom: 50px; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+  .btn-dark {
+    display: inline-block;
+    background: var(--black);
+    color: var(--green);
+    font-family: 'Unbounded', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 20px 48px;
+    border-radius: 100px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+  }
+
+  .btn-dark:hover { background: var(--grey); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    padding: 40px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-logo {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--green);
+  }
+
+  .footer-text { font-size: 12px; color: var(--muted); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @keyframes lineGrow {
+    0%, 100% { width: 30px; opacity: 0.4; }
+    50% { width: 50px; opacity: 1; }
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 70px 24px; }
+    .hero { padding: 80px 24px 60px; }
+    footer { padding: 30px 24px; flex-direction: column; text-align: center; }
+    .scroll-hint { display: none; }
+    .step { grid-template-columns: 50px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">🤖 Нова ера для вашого бізнесу</div>
+  <h1>Ваш бізнес<br>працює поки<br><span>ви спите</span></h1>
+  <p class="hero-sub">AI-помічник у Telegram який відповідає клієнтам, приймає заявки і звітує вам — 24 години на добу, 7 днів на тиждень.</p>
+  <div class="hero-cta">
+    <a href="https://t.me/your_contact" class="btn-main">Спробувати безкоштовно →</a>
+    <a href="#how" class="btn-ghost">Як це працює</a>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    Гортайте вниз
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>Автовідповіді 24/7</span><span>•</span>
+    <span>Прийом заявок</span><span>•</span>
+    <span>Щоденні звіти</span><span>•</span>
+    <span>Бронювання</span><span>•</span>
+    <span>Збір відгуків</span><span>•</span>
+    <span>Без програмістів</span><span>•</span>
+    <span>Автовідповіді 24/7</span><span>•</span>
+    <span>Прийом заявок</span><span>•</span>
+    <span>Щоденні звіти</span><span>•</span>
+    <span>Бронювання</span><span>•</span>
+    <span>Збір відгуків</span><span>•</span>
+    <span>Без програмістів</span><span>•</span>
+  </div>
+</div>
+
+<!-- PAIN -->
+<section class="pain">
+  <div class="section-label">Проблема</div>
+  <h2>Впізнаєте себе?</h2>
+  <div class="pain-grid">
+    <div class="pain-item">
+      <div class="pain-num">01</div>
+      <div class="pain-title">Клієнти пишуть вночі</div>
+      <div class="pain-text">А ви спите. Вранці він вже пішов до конкурента. Ви навіть не знаєте що втратили.</div>
+    </div>
+    <div class="pain-item">
+      <div class="pain-num">02</div>
+      <div class="pain-title">Одні й ті ж питання</div>
+      <div class="pain-text">"Скільки коштує?", "Чи є вільний час?", "Як до вас доїхати?" — по 20 разів на день.</div>
+    </div>
+    <div class="pain-item">
+      <div class="pain-num">03</div>
+      <div class="pain-title">Немає часу на звітність</div>
+      <div class="pain-text">Рахувати касу, записувати клієнтів, слідкувати за замовленнями — все це забирає години.</div>
+    </div>
+    <div class="pain-item">
+      <div class="pain-num">04</div>
+      <div class="pain-title">Наймати людину дорого</div>
+      <div class="pain-text">Адміністратор коштує 8,000–15,000 грн/місяць. І ще треба слідкувати за ним.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="steps" id="how">
+  <div class="section-label">Рішення</div>
+  <h2>Як це<br>працює</h2>
+  <div class="steps-list">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div>
+        <div class="step-title">Ви пишете нам в Telegram</div>
+        <div class="step-text">Розповідаєте про свій бізнес: кафе, салон, магазин, майстерня — не важливо. Ми задаємо 5 питань.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div>
+        <div class="step-title">Ми налаштовуємо бота за 24 години</div>
+        <div class="step-text">Персональний AI-помічник під ваш бізнес. Знає ваш прайс, графік, адресу, відповідає на ваші питання.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div>
+        <div class="step-title">Бот починає працювати</div>
+        <div class="step-text">Відповідає клієнтам, приймає заявки, надсилає меню або прайс, бронює час — все автоматично.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div>
+        <div class="step-title">Ви отримуєте звіт щодня</div>
+        <div class="step-text">Скільки запитів, скільки бронювань, яка каса — вам у Telegram кожного вечора. Нічого зайвого.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-label">Тарифи</div>
+  <h2>Менше ніж<br>одна кава на день</h2>
+  <div class="plans">
+    <div class="plan">
+      <div class="plan-name">Старт</div>
+      <div class="plan-price">$29</div>
+      <div class="plan-period">на місяць</div>
+      <ul class="plan-features">
+        <li>Автовідповіді на питання</li>
+        <li>Прийом заявок</li>
+        <li>Щоденний звіт</li>
+        <li>Підтримка 5 днів/тиждень</li>
+      </ul>
+      <a href="https://t.me/your_contact" class="plan-btn">Обрати</a>
+    </div>
+    <div class="plan featured">
+      <div class="plan-badge">Найпопулярніший</div>
+      <div class="plan-name">Бізнес</div>
+      <div class="plan-price">$49</div>
+      <div class="plan-period">на місяць</div>
+      <ul class="plan-features">
+        <li>Все з тарифу Старт</li>
+        <li>Бронювання та запис</li>
+        <li>Збір відгуків</li>
+        <li>Підтримка 7 днів/тиждень</li>
+        <li>Зміни налаштувань щомісяця</li>
+      </ul>
+      <a href="https://t.me/your_contact" class="plan-btn">Обрати</a>
+    </div>
+    <div class="plan">
+      <div class="plan-name">Про</div>
+      <div class="plan-price">$89</div>
+      <div class="plan-period">на місяць</div>
+      <ul class="plan-features">
+        <li>Все з тарифу Бізнес</li>
+        <li>Інтеграція з Instagram</li>
+        <li>Аналітика за місяць</li>
+        <li>Необмежені зміни</li>
+        <li>Пріоритетна підтримка</li>
+      </ul>
+      <a href="https://t.me/your_contact" class="plan-btn">Обрати</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="proof">
+  <div class="section-label">Результати</div>
+  <h2>Цифри<br>говорять самі</h2>
+  <div class="proof-grid">
+    <div class="proof-stat">
+      <div class="proof-number">24/7</div>
+      <div class="proof-label">Бот не спить і не хворіє</div>
+    </div>
+    <div class="proof-stat">
+      <div class="proof-number">&lt;30c</div>
+      <div class="proof-label">Час відповіді клієнту</div>
+    </div>
+    <div class="proof-stat">
+      <div class="proof-number">×3</div>
+      <div class="proof-label">Більше оброблених заявок</div>
+    </div>
+    <div class="proof-stat">
+      <div class="proof-number">$0</div>
+      <div class="proof-label">Перший місяць — безкоштовно</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="section-label">Питання</div>
+  <h2>Відповіді на<br>ваші питання</h2>
+  <div class="faq-list">
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Чи потрібно мені вміти програмувати?</div>
+      <div class="faq-a">Ні. Ви просто розповідаєте про свій бізнес, а ми налаштовуємо все за вас. Для вас це як підписатись на Netflix.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Скільки часу займає запуск?</div>
+      <div class="faq-a">24–48 годин після першої розмови. Ви надаєте інформацію про бізнес, ми налаштовуємо і передаємо готового бота.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Що якщо бот не зможе відповісти?</div>
+      <div class="faq-a">Бот повідомить клієнта що переадресовує питання вам особисто. Ви отримаєте сповіщення і відповісте самі. Нічого не загубиться.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Чи можна скасувати підписку?</div>
+      <div class="faq-a">Так, будь-якого місяця без штрафів. Але більшість клієнтів залишаються — бо без бота вже незручно.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Для яких бізнесів це підходить?</div>
+      <div class="faq-a">Кафе, салони краси, лікарі, репетитори, магазини, майстерні, служби доставки — будь-який бізнес де є клієнти які пишуть питання.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <h2>Готові спробувати?</h2>
+  <p>Перший місяць безкоштовно. Без ризику. Без договорів.</p>
+  <a href="https://t.me/your_contact" class="btn-dark">Написати в Telegram →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">AI-СУСІД</div>
+  <div class="footer-text">© 2026 AI-Сусід. Автоматизація малого бізнесу в Україні.</div>
+</footer>
+
+</body>
+</html>
