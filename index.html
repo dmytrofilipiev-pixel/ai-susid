@@ -229,7 +229,7 @@
 
   .pain-text { font-size: 14px; color: var(--muted); line-height: 1.7; }
 
-  /* HOW IT WORKS */
+  /* HOW IT WORKS — 3 ЕТАПИ */
   .steps { background: var(--black); }
 
   .steps-list {
@@ -266,6 +266,22 @@
     margin-bottom: 10px;
     color: var(--white);
   }
+
+  .step-tag {
+    display: inline-block;
+    font-family: 'Geologica', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 12px;
+  }
+
+  .step-tag.green { background: rgba(0,232,122,0.15); color: var(--green); }
+  .step-tag.blue { background: rgba(100,149,237,0.15); color: #6495ED; }
+  .step-tag.gold { background: rgba(255,215,0,0.15); color: #FFD700; }
 
   .step-text { font-size: 15px; color: var(--muted); line-height: 1.7; }
 
@@ -320,10 +336,15 @@
 
   .plan-price {
     font-family: 'Unbounded', sans-serif;
-    font-size: 56px;
+    font-size: 48px;
     font-weight: 900;
     line-height: 1;
     margin-bottom: 6px;
+  }
+
+  .plan-currency {
+    font-size: 24px;
+    font-weight: 700;
   }
 
   .plan-period { font-size: 13px; color: var(--muted); margin-bottom: 36px; }
@@ -342,7 +363,7 @@
   .plan.featured .plan-features li { color: rgba(0,0,0,0.7); }
 
   .plan-features li::before {
-    content: '→';
+    content: '\2192';
     color: var(--green);
     font-weight: 700;
     flex-shrink: 0;
@@ -373,6 +394,15 @@
   }
 
   .plan.featured .plan-btn:hover { background: var(--grey); }
+
+  .plan-save {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .plan.featured .plan-save { color: rgba(0,0,0,0.5); }
 
   /* PROOF */
   .proof { background: var(--black); }
@@ -439,7 +469,7 @@
   }
 
   .faq-item.open .faq-a { max-height: 200px; margin-top: 16px; }
-  .faq-item.open .faq-q::after { content: '−'; }
+  .faq-item.open .faq-q::after { content: '\2212'; }
 
   /* CTA FINAL */
   .cta-final {
@@ -511,6 +541,7 @@
     footer { padding: 30px 24px; flex-direction: column; text-align: center; }
     .scroll-hint { display: none; }
     .step { grid-template-columns: 50px 1fr; }
+    .plan-price { font-size: 40px; }
   }
 </style>
 </head>
@@ -518,11 +549,11 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="badge">🤖 Нова ера для вашого бізнесу</div>
+  <div class="badge">AI-помічник для малого бізнесу</div>
   <h1>Ваш бізнес<br>працює поки<br><span>ви спите</span></h1>
-  <p class="hero-sub">AI-помічник у Telegram який відповідає клієнтам, приймає заявки і звітує вам — 24 години на добу, 7 днів на тиждень.</p>
+  <p class="hero-sub">AI-помічник у Telegram який відповідає клієнтам, приймає заявки і звітує вам — 24 години на добу, 7 днів на тиждень. Дешевше за будь-якого працівника.</p>
   <div class="hero-cta">
-    <a href="https://t.me/your_contact" class="btn-main">Спробувати безкоштовно →</a>
+    <a href="https://t.me/AI_SUSID_BOT" class="btn-main">Спробувати безкоштовно</a>
     <a href="#how" class="btn-ghost">Як це працює</a>
   </div>
   <div class="scroll-hint">
@@ -534,18 +565,18 @@
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-inner">
-    <span>Автовідповіді 24/7</span><span>•</span>
-    <span>Прийом заявок</span><span>•</span>
-    <span>Щоденні звіти</span><span>•</span>
-    <span>Бронювання</span><span>•</span>
-    <span>Збір відгуків</span><span>•</span>
-    <span>Без програмістів</span><span>•</span>
-    <span>Автовідповіді 24/7</span><span>•</span>
-    <span>Прийом заявок</span><span>•</span>
-    <span>Щоденні звіти</span><span>•</span>
-    <span>Бронювання</span><span>•</span>
-    <span>Збір відгуків</span><span>•</span>
-    <span>Без програмістів</span><span>•</span>
+    <span>Автовідповіді 24/7</span><span>*</span>
+    <span>Прийом заявок</span><span>*</span>
+    <span>Щоденні звіти</span><span>*</span>
+    <span>Бронювання</span><span>*</span>
+    <span>Збір відгуків</span><span>*</span>
+    <span>Без програмістів</span><span>*</span>
+    <span>Автовідповіді 24/7</span><span>*</span>
+    <span>Прийом заявок</span><span>*</span>
+    <span>Щоденні звіти</span><span>*</span>
+    <span>Бронювання</span><span>*</span>
+    <span>Збір відгуків</span><span>*</span>
+    <span>Без програмістів</span><span>*</span>
   </div>
 </div>
 
@@ -577,37 +608,33 @@
   </div>
 </section>
 
-<!-- HOW -->
+<!-- HOW — 3 ЕТАПИ -->
 <section class="steps" id="how">
-  <div class="section-label">Рішення</div>
-  <h2>Як це<br>працює</h2>
+  <div class="section-label">Як це працює</div>
+  <h2>Три простих<br>етапи</h2>
   <div class="steps-list">
     <div class="step">
       <div class="step-num">01</div>
       <div>
-        <div class="step-title">Ви пишете нам в Telegram</div>
-        <div class="step-text">Розповідаєте про свій бізнес: кафе, салон, магазин, майстерня — не важливо. Ми задаємо 5 питань.</div>
+        <div class="step-tag green">Етап 1 — Реєстрація</div>
+        <div class="step-title">Ви відповідаєте на 7 питань</div>
+        <div class="step-text">Пишете нашому боту в Telegram, відповідаєте на короткі питання про бізнес: назва, послуги, графік, адреса. Це займає 2 хвилини. Ваш AI-помічник створюється автоматично протягом 24 годин.</div>
       </div>
     </div>
     <div class="step">
       <div class="step-num">02</div>
       <div>
-        <div class="step-title">Ми налаштовуємо бота за 24 години</div>
-        <div class="step-text">Персональний AI-помічник під ваш бізнес. Знає ваш прайс, графік, адресу, відповідає на ваші питання.</div>
+        <div class="step-tag blue">Етап 2 — Навчання</div>
+        <div class="step-title">Ви навчаєте бота своєму бізнесу</div>
+        <div class="step-text">Ваш AI-помічник — як новий працівник. Ви розповідаєте йому все: меню з цінами, часті питання клієнтів, правила бронювання, акції. Чим більше навчите — тим розумніший він стане. Це займає 5-10 хвилин.</div>
       </div>
     </div>
     <div class="step">
       <div class="step-num">03</div>
       <div>
-        <div class="step-title">Бот починає працювати</div>
-        <div class="step-text">Відповідає клієнтам, приймає заявки, надсилає меню або прайс, бронює час — все автоматично.</div>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <div>
-        <div class="step-title">Ви отримуєте звіт щодня</div>
-        <div class="step-text">Скільки запитів, скільки бронювань, яка каса — вам у Telegram кожного вечора. Нічого зайвого.</div>
+        <div class="step-tag gold">Етап 3 — Робота 24/7</div>
+        <div class="step-title">Бот працює — ви відпочиваєте</div>
+        <div class="step-text">AI-помічник відповідає клієнтам вдень і вночі, приймає заявки, бронює час, показує меню і щодня звітує вам в Telegram. Ви можете оновлювати інформацію будь-коли.</div>
       </div>
     </div>
   </div>
@@ -616,46 +643,49 @@
 <!-- PRICING -->
 <section class="pricing" id="pricing">
   <div class="section-label">Тарифи</div>
-  <h2>Менше ніж<br>одна кава на день</h2>
+  <h2>Дешевше ніж<br>один працівник<br>на один день</h2>
   <div class="plans">
     <div class="plan">
       <div class="plan-name">Старт</div>
-      <div class="plan-price">$29</div>
+      <div class="plan-price">499<span class="plan-currency"> грн</span></div>
       <div class="plan-period">на місяць</div>
       <ul class="plan-features">
-        <li>Автовідповіді на питання</li>
+        <li>Автовідповіді на питання 24/7</li>
         <li>Прийом заявок</li>
         <li>Щоденний звіт</li>
         <li>Підтримка 5 днів/тиждень</li>
       </ul>
-      <a href="https://t.me/your_contact" class="plan-btn">Обрати</a>
+      <a href="https://t.me/AI_SUSID_BOT" class="plan-btn">Спробувати безкоштовно</a>
+      <div class="plan-save">Перший місяць — 0 грн</div>
     </div>
     <div class="plan featured">
       <div class="plan-badge">Найпопулярніший</div>
       <div class="plan-name">Бізнес</div>
-      <div class="plan-price">$49</div>
+      <div class="plan-price">999<span class="plan-currency"> грн</span></div>
       <div class="plan-period">на місяць</div>
       <ul class="plan-features">
         <li>Все з тарифу Старт</li>
+        <li>Каталог товарів з цінами</li>
         <li>Бронювання та запис</li>
         <li>Збір відгуків</li>
         <li>Підтримка 7 днів/тиждень</li>
-        <li>Зміни налаштувань щомісяця</li>
       </ul>
-      <a href="https://t.me/your_contact" class="plan-btn">Обрати</a>
+      <a href="https://t.me/AI_SUSID_BOT" class="plan-btn">Спробувати безкоштовно</a>
+      <div class="plan-save">Перший місяць — 0 грн</div>
     </div>
     <div class="plan">
       <div class="plan-name">Про</div>
-      <div class="plan-price">$89</div>
+      <div class="plan-price">1999<span class="plan-currency"> грн</span></div>
       <div class="plan-period">на місяць</div>
       <ul class="plan-features">
         <li>Все з тарифу Бізнес</li>
+        <li>AI голос по телефону</li>
         <li>Інтеграція з Instagram</li>
         <li>Аналітика за місяць</li>
-        <li>Необмежені зміни</li>
         <li>Пріоритетна підтримка</li>
       </ul>
-      <a href="https://t.me/your_contact" class="plan-btn">Обрати</a>
+      <a href="https://t.me/AI_SUSID_BOT" class="plan-btn">Спробувати безкоштовно</a>
+      <div class="plan-save">Перший місяць — 0 грн</div>
     </div>
   </div>
 </section>
@@ -670,16 +700,16 @@
       <div class="proof-label">Бот не спить і не хворіє</div>
     </div>
     <div class="proof-stat">
-      <div class="proof-number">&lt;30c</div>
+      <div class="proof-number">&lt;30с</div>
       <div class="proof-label">Час відповіді клієнту</div>
     </div>
     <div class="proof-stat">
-      <div class="proof-number">×3</div>
+      <div class="proof-number">x3</div>
       <div class="proof-label">Більше оброблених заявок</div>
     </div>
     <div class="proof-stat">
-      <div class="proof-number">$0</div>
-      <div class="proof-label">Перший місяць — безкоштовно</div>
+      <div class="proof-number">0 грн</div>
+      <div class="proof-label">Перший місяць безкоштовно</div>
     </div>
   </div>
 </section>
@@ -691,23 +721,27 @@
   <div class="faq-list">
     <div class="faq-item" onclick="this.classList.toggle('open')">
       <div class="faq-q">Чи потрібно мені вміти програмувати?</div>
-      <div class="faq-a">Ні. Ви просто розповідаєте про свій бізнес, а ми налаштовуємо все за вас. Для вас це як підписатись на Netflix.</div>
+      <div class="faq-a">Ні. Ви просто відповідаєте на питання про бізнес і навчаєте бота — як нового працівника. Жодних технічних знань.</div>
     </div>
     <div class="faq-item" onclick="this.classList.toggle('open')">
       <div class="faq-q">Скільки часу займає запуск?</div>
-      <div class="faq-a">24–48 годин після першої розмови. Ви надаєте інформацію про бізнес, ми налаштовуємо і передаємо готового бота.</div>
+      <div class="faq-a">Реєстрація — 2 хвилини. Бот готовий за 24 години. Навчання — ще 5-10 хвилин. Через день у вас повністю працюючий AI-помічник.</div>
     </div>
     <div class="faq-item" onclick="this.classList.toggle('open')">
       <div class="faq-q">Що якщо бот не зможе відповісти?</div>
-      <div class="faq-a">Бот повідомить клієнта що переадресовує питання вам особисто. Ви отримаєте сповіщення і відповісте самі. Нічого не загубиться.</div>
+      <div class="faq-a">Бот чесно скаже клієнту що уточнить, і одразу надішле вам сповіщення з питанням. Ви відповісте — і бот навчиться на майбутнє. Нічого не загубиться.</div>
     </div>
     <div class="faq-item" onclick="this.classList.toggle('open')">
       <div class="faq-q">Чи можна скасувати підписку?</div>
-      <div class="faq-a">Так, будь-якого місяця без штрафів. Але більшість клієнтів залишаються — бо без бота вже незручно.</div>
+      <div class="faq-a">Так, будь-якого місяця без штрафів. Перший місяць безкоштовний — спробуйте без ризику.</div>
     </div>
     <div class="faq-item" onclick="this.classList.toggle('open')">
       <div class="faq-q">Для яких бізнесів це підходить?</div>
-      <div class="faq-a">Кафе, салони краси, лікарі, репетитори, магазини, майстерні, служби доставки — будь-який бізнес де є клієнти які пишуть питання.</div>
+      <div class="faq-a">Кафе, салони краси, лікарі, репетитори, магазини, майстерні, служби доставки — будь-який бізнес де клієнти пишуть питання.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Скільки це коштує?</div>
+      <div class="faq-a">Від 499 грн/місяць — це менше ніж одна зміна адміністратора. А працює 24/7 без вихідних. Перший місяць безкоштовно.</div>
     </div>
   </div>
 </section>
@@ -715,14 +749,14 @@
 <!-- CTA FINAL -->
 <section class="cta-final">
   <h2>Готові спробувати?</h2>
-  <p>Перший місяць безкоштовно. Без ризику. Без договорів.</p>
-  <a href="https://t.me/ukraine_dmytro" class="btn-dark">Написати в Telegram →</a>
+  <p>Перший місяць безкоштовно. Без ризику. Без договорів. Скасування в один клік.</p>
+  <a href="https://t.me/AI_SUSID_BOT" class="btn-dark">Написати в Telegram</a>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">AI-СУСІД</div>
-  <div class="footer-text">© 2026 AI-Сусід. Автоматизація малого бізнесу в Україні.</div>
+  <div class="footer-text">&copy; 2026 AI-Сусід. Автоматизація малого бізнесу в Україні.</div>
 </footer>
 
 </body>
